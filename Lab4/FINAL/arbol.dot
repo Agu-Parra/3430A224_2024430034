@@ -1,0 +1,25 @@
+digraph G {
+node [style=filled fillcolor="#ffd6cc"];
+100 ->50;
+50 ->25;
+"25i" [shape=point];
+25->"25i";
+"25d" [shape=point];
+25->"25d";
+50 ->80;
+"80i" [shape=point];
+80->"80i";
+"80d" [shape=point];
+80->"80d";
+100 ->150;
+150 ->120;
+"120i" [shape=point];
+120->"120i";
+"120d" [shape=point];
+120->"120d";
+150 ->200;
+"200i" [shape=point];
+200->"200i";
+"200d" [shape=point];
+200->"200d";
+}
