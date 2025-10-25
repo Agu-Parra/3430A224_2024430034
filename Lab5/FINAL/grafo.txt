@@ -1,84 +1,124 @@
 digraph G {
 node [style=filled fillcolor=tomato shape=box];
-"GO:0006974" [label="GO:0006974\nFE=1", shape=box];
-"GO:0006974" -> "GO:0004956";
-"GO:0004956" [label="GO:0004956\nFE=0", shape=box];
-"GO:0004956" -> "GO:0001302";
-"GO:0001302" [label="GO:0001302\nFE=0", shape=box];
-"GO:0001302" -> "GO:0000723";
-"GO:0000723" [label="GO:0000723\nFE=0", shape=box];
-"GO:0000723i" [shape=point];
-"GO:0000723" -> "GO:0000723i";
-"GO:0000723d" [shape=point];
-"GO:0000723" -> "GO:0000723d";
-"GO:0001302" -> "GO:0001306";
-"GO:0001306" [label="GO:0001306\nFE=0", shape=box];
-"GO:0001306i" [shape=point];
-"GO:0001306" -> "GO:0001306i";
-"GO:0001306d" [shape=point];
-"GO:0001306" -> "GO:0001306d";
-"GO:0004956" -> "GO:0006914";
-"GO:0006914" [label="GO:0006914\nFE=0", shape=box];
-"GO:0006914" -> "GO:0006468";
-"GO:0006468" [label="GO:0006468\nFE=0", shape=box];
-"GO:0006468i" [shape=point];
-"GO:0006468" -> "GO:0006468i";
-"GO:0006468d" [shape=point];
-"GO:0006468" -> "GO:0006468d";
-"GO:0006914" -> "GO:0006954";
-"GO:0006954" [label="GO:0006954\nFE=0", shape=box];
-"GO:0006954i" [shape=point];
-"GO:0006954" -> "GO:0006954i";
-"GO:0006954d" [shape=point];
-"GO:0006954" -> "GO:0006954d";
-"GO:0006974" -> "GO:0030198";
-"GO:0030198" [label="GO:0030198\nFE=0", shape=box];
-"GO:0030198" -> "GO:0007050";
-"GO:0007050" [label="GO:0007050\nFE=0", shape=box];
-"GO:0007050" -> "GO:0006979";
-"GO:0006979" [label="GO:0006979\nFE=-1", shape=box];
-"GO:0006979" -> "GO:0006978";
-"GO:0006978" [label="GO:0006978\nFE=0", shape=box];
-"GO:0006978i" [shape=point];
-"GO:0006978" -> "GO:0006978i";
-"GO:0006978d" [shape=point];
-"GO:0006978" -> "GO:0006978d";
-"GO:0006979d" [shape=point];
-"GO:0006979" -> "GO:0006979d";
-"GO:0007050" -> "GO:0009314";
-"GO:0009314" [label="GO:0009314\nFE=0", shape=box];
-"GO:0009314" -> "GO:0007568";
-"GO:0007568" [label="GO:0007568\nFE=0", shape=box];
-"GO:0007568i" [shape=point];
-"GO:0007568" -> "GO:0007568i";
-"GO:0007568d" [shape=point];
-"GO:0007568" -> "GO:0007568d";
-"GO:0009314" -> "GO:0016236";
-"GO:0016236" [label="GO:0016236\nFE=0", shape=box];
-"GO:0016236i" [shape=point];
-"GO:0016236" -> "GO:0016236i";
-"GO:0016236d" [shape=point];
-"GO:0016236" -> "GO:0016236d";
-"GO:0030198" -> "GO:0031667";
-"GO:0031667" [label="GO:0031667\nFE=1", shape=box];
-"GO:0031667" -> "GO:0031099";
-"GO:0031099" [label="GO:0031099\nFE=0", shape=box];
-"GO:0031099i" [shape=point];
-"GO:0031099" -> "GO:0031099i";
-"GO:0031099d" [shape=point];
-"GO:0031099" -> "GO:0031099d";
-"GO:0031667" -> "GO:0034976";
-"GO:0034976" [label="GO:0034976\nFE=0", shape=box];
-"GO:0034976" -> "GO:0032496";
-"GO:0032496" [label="GO:0032496\nFE=0", shape=box];
-"GO:0032496i" [shape=point];
-"GO:0032496" -> "GO:0032496i";
-"GO:0032496d" [shape=point];
-"GO:0032496" -> "GO:0032496d";
-"GO:0034976" -> "GO:0090398";
-"GO:0090398" [label="GO:0090398\nFE=0", shape=box];
-"GO:0090398i" [shape=point];
-"GO:0090398" -> "GO:0090398i";
-"GO:0090398d" [shape=point];
-"GO:0090398" -> "GO:0090398d";
+"0x55a051bad910" [label="Score: 0.97
+GO: GO:0001302
+FE=-1", shape=box];
+"0x55a051bad910" -> "0x55a051badfc0";
+"0x55a051badfc0" [label="Score: 0.86
+GO: GO:0006914
+FE=0", shape=box];
+"0x55a051badfc0" -> "0x55a051badd80";
+"0x55a051badd80" [label="Score: 0.84
+GO: GO:0016236
+FE=-1", shape=box];
+"0x55a051badd80" -> "0x55a051bae0d0";
+"0x55a051bae0d0" [label="Score: 0.76
+GO: GO:0032496
+FE=0", shape=box];
+"0x55a051bae0d0" -> "0x55a051bae170";
+"0x55a051bae170" [label="Score: 0.75
+GO: GO:0009314
+FE=0", shape=box];
+"0x55a051bae170i" [shape=point];
+"0x55a051bae170" -> "0x55a051bae170i";
+"0x55a051bae170d" [shape=point];
+"0x55a051bae170" -> "0x55a051bae170d";
+"0x55a051bae0d0" -> "0x55a051badeb0";
+"0x55a051badeb0" [label="Score: 0.81
+GO: GO:0031667
+FE=0", shape=box];
+"0x55a051badeb0i" [shape=point];
+"0x55a051badeb0" -> "0x55a051badeb0i";
+"0x55a051badeb0d" [shape=point];
+"0x55a051badeb0" -> "0x55a051badeb0d";
+"0x55a051badd80" -> "0x55a051bae240";
+"0x55a051bae240" [label="Score: 0.85
+GO: GO:0034976
+FE=0", shape=box];
+"0x55a051bae240i" [shape=point];
+"0x55a051bae240" -> "0x55a051bae240i";
+"0x55a051bae240d" [shape=point];
+"0x55a051bae240" -> "0x55a051bae240d";
+"0x55a051badfc0" -> "0x55a051badb20";
+"0x55a051badb20" [label="Score: 0.92
+GO: GO:0006974
+FE=0", shape=box];
+"0x55a051badb20" -> "0x55a051badf50";
+"0x55a051badf50" [label="Score: 0.89
+GO: GO:0006468
+FE=0", shape=box];
+"0x55a051badf50" -> "0x55a051bae2e0";
+"0x55a051bae2e0" [label="Score: 0.89
+GO: GO:0000723
+FE=0", shape=box];
+"0x55a051bae2e0i" [shape=point];
+"0x55a051bae2e0" -> "0x55a051bae2e0i";
+"0x55a051bae2e0d" [shape=point];
+"0x55a051bae2e0" -> "0x55a051bae2e0d";
+"0x55a051badf50" -> "0x55a051bae3f0";
+"0x55a051bae3f0" [label="Score: 0.91
+GO: GO:0006978
+FE=0", shape=box];
+"0x55a051bae3f0i" [shape=point];
+"0x55a051bae3f0" -> "0x55a051bae3f0i";
+"0x55a051bae3f0d" [shape=point];
+"0x55a051bae3f0" -> "0x55a051bae3f0d";
+"0x55a051badb20" -> "0x55a051bada50";
+"0x55a051bada50" [label="Score: 0.93
+GO: GO:0006979
+FE=0", shape=box];
+"0x55a051bada50" -> "0x55a051bae350";
+"0x55a051bae350" [label="Score: 0.93
+GO: GO:0001306
+FE=0", shape=box];
+"0x55a051bae350i" [shape=point];
+"0x55a051bae350" -> "0x55a051bae350i";
+"0x55a051bae350d" [shape=point];
+"0x55a051bae350" -> "0x55a051bae350d";
+"0x55a051bada50" -> "0x55a051bad980";
+"0x55a051bad980" [label="Score: 0.96
+GO: GO:0007050
+FE=0", shape=box];
+"0x55a051bad980i" [shape=point];
+"0x55a051bad980" -> "0x55a051bad980i";
+"0x55a051bad980d" [shape=point];
+"0x55a051bad980" -> "0x55a051bad980d";
+"0x55a051bad910" -> "0x55a051badca0";
+"0x55a051badca0" [label="Score: 1.8
+GO: GO:0030198
+FE=0", shape=box];
+"0x55a051badca0" -> "0x55a051badd10";
+"0x55a051badd10" [label="Score: 1.75
+GO: GO:0031099
+FE=-1", shape=box];
+"0x55a051badd10" -> "0x55a051bad8a0";
+"0x55a051bad8a0" [label="Score: 1
+GO: GO:0090398
+FE=0", shape=box];
+"0x55a051bad8a0i" [shape=point];
+"0x55a051bad8a0" -> "0x55a051bad8a0i";
+"0x55a051bad8a0d" [shape=point];
+"0x55a051bad8a0" -> "0x55a051bad8a0d";
+"0x55a051badd10d" [shape=point];
+"0x55a051badd10" -> "0x55a051badd10d";
+"0x55a051badca0" -> "0x55a051badc30";
+"0x55a051badc30" [label="Score: 1.86
+GO: GO:0006954
+FE=0", shape=box];
+"0x55a051badc30" -> "0x55a051bae030";
+"0x55a051bae030" [label="Score: 1.85
+GO: GO:0007568
+FE=0", shape=box];
+"0x55a051bae030i" [shape=point];
+"0x55a051bae030" -> "0x55a051bae030i";
+"0x55a051bae030d" [shape=point];
+"0x55a051bae030" -> "0x55a051bae030d";
+"0x55a051badc30" -> "0x55a051badbc0";
+"0x55a051badbc0" [label="Score: 1.88
+GO: GO:0004956
+FE=0", shape=box];
+"0x55a051badbc0i" [shape=point];
+"0x55a051badbc0" -> "0x55a051badbc0i";
+"0x55a051badbc0d" [shape=point];
+"0x55a051badbc0" -> "0x55a051badbc0d";
 }

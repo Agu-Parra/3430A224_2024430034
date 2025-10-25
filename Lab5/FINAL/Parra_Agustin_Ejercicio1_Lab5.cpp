@@ -86,30 +86,37 @@ NODO* insertar(NODO* &nodo, string funtion, string go, float score){
         nodo = creaNodo(funtion, go, score);
         return nodo;
     }
-    if(go < nodo -> go){
+    if(score < nodo -> score){
         nodo -> left = insertar(nodo -> left, funtion, go, score);
 
-    }else if(go > nodo -> go){
+    }else if(score > nodo -> score){
         nodo -> right = insertar(nodo -> right, funtion, go, score);
-    }else{
-        cout << "El nodo con go " << go << " ya existe en el arbol." << endl;
+    }else{ // Si los scores son iguales, usamos el GO para decidir la posicion
+        if(go < nodo -> go){
+            nodo -> left = insertar(nodo -> left, funtion, go, score);
+        }else if(go > nodo -> go){
+            nodo -> right = insertar(nodo -> right, funtion, go, score);
+        }else{
+            cout << "El nodo con GO " << go << " ya existe. No se inserto duplicado." << endl;
+        }
+
     }
+
 
     return Balancear(nodo);
 }
-
 NODO* Buscar(NODO* nodo, string go){
     if(nodo == nullptr){
         return nullptr;
     }
-    if(nodo -> go == go){
+    if(nodo->go == go){
         return nodo;
     }
-    if(go < nodo -> go){
-        return Buscar(nodo -> left, go);
-    }else{
-        return Buscar(nodo -> right, go);
+    NODO* encontrado = Buscar(nodo->left, go);
+    if(encontrado != nullptr){
+        return encontrado;
     }
+    return Buscar(nodo->right, go);
 }
 
 // Para un mayor orden imprimo el arbol en posorden
@@ -119,35 +126,36 @@ void imprimirPosOrden(NODO* nodo){
     imprimirPosOrden(nodo -> right);
     cout << "Funcion: " << nodo -> funtion << ", GO: " << nodo -> go << ", Score: " << nodo -> score << endl;
 }
-
 void Dot(NODO* nodo, ofstream &archivo) {
     if (nodo == nullptr)
         return;
 
-   
-    archivo << "\"" << nodo->go << "\" [label=\""
-            << nodo->go << "\\nFE=" << nodo->fe
+    
+    archivo << "\"" << nodo << "\" [label=\""
+            << "Score: " << nodo->score 
+            << "\nGO: " << nodo->go
+            << "\nFE=" << nodo->fe
             << "\", shape=box];\n";
 
-    //hijo izquierdo
+    // Hijo izquierdo
     if (nodo->left != nullptr) {
-        archivo << "\"" << nodo->go << "\" -> \"" << nodo->left->go << "\";\n";
+        archivo << "\"" << nodo << "\" -> \"" << nodo->left << "\";\n";
         Dot(nodo->left, archivo);
     } else {
-        // Si no tiene hijo izquierdo, agrega un punto 
-        archivo << "\"" << nodo->go << "i\" [shape=point];\n";
-        archivo << "\"" << nodo->go << "\" -> \"" << nodo->go << "i\";\n";
+        archivo << "\"" << nodo << "i\" [shape=point];\n";
+        archivo << "\"" << nodo << "\" -> \"" << nodo << "i\";\n";
     }
 
-    // hijo derecho
+    // Hijo derecho
     if (nodo->right != nullptr) {
-        archivo << "\"" << nodo->go << "\" -> \"" << nodo->right->go << "\";\n";
+        archivo << "\"" << nodo << "\" -> \"" << nodo->right << "\";\n";
         Dot(nodo->right, archivo);
     } else {
-        archivo << "\"" << nodo->go << "d\" [shape=point];\n";
-        archivo << "\"" << nodo->go << "\" -> \"" << nodo->go << "d\";\n";
+        archivo << "\"" << nodo << "d\" [shape=point];\n";
+        archivo << "\"" << nodo << "\" -> \"" << nodo << "d\";\n";
     }
 }
+
 
 void leerCSV(NODO* &raiz, const string& nombreArchivo) {
     ifstream archivo(nombreArchivo);
