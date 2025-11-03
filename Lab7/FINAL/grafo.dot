@@ -1,0 +1,9 @@
+graph G {
+rankdir=LR;
+node [shape=circle style=filled fillcolor="#5ef873ff"];
+1 -- 2 [label="3"];
+1 -- 3 [label="4"];
+2 -- 3 [label="5"];
+2 -- 4 [label="2"];
+3 -- 4 [label="3"];
+}
