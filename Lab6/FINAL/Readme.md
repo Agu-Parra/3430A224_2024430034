@@ -78,16 +78,13 @@ NODO 4 costo: 7
 ### 🧩Diagrama de Flujo del grafo
 
 ```mermaid
-digraph G {
-rankdir=LR;
-node [shape=circle style=filled fillcolor="#ff00f2ff"];
-1 -> 2 [label="3"];
-2 -> 3 [label="3"];
-2 -> 4 [label="4"];
-3 -> 2 [label="2"];
-3 -> 4 [label="4"];
-4 -> 1 [label="3"];
-}
+graph LR
+    1 -->|3| 2
+    2 -->|3| 3
+    2 -->|4| 4
+    3 -->|2| 2
+    3 -->|4| 4
+    4 -->|3| 1
 ```
 #### Descipcion del flujo:
 
