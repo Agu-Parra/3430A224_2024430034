@@ -1,0 +1,10 @@
+digraph G {
+rankdir=LR;
+node [shape=circle style=filled fillcolor="#ff00f2ff"];
+1 -> 2 [label="3"];
+2 -> 3 [label="3"];
+2 -> 4 [label="4"];
+3 -> 2 [label="2"];
+3 -> 4 [label="4"];
+4 -> 1 [label="3"];
+}
