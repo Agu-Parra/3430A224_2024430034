@@ -1,0 +1,36 @@
+
+#sort: ordena el texo
+#uniq: elimina las copias
+#read: lee una linea del archivo
+#sacado del scrip del laboratorio 3
+
+#ARCHIVO HEM_A
+source="HEM_A"
+grep "^ATOM" ${source}.pdb | awk '{print $4}' | sort | uniq > res1.txt
+echo "aas;HEM" > ${source}_aas.csv
+while read res; do
+	count=$(grep " $res " ${source}.pdb | grep "CA" | wc -l)
+	echo "$res;$count" >> ${source}_aas.csv
+done < res1.txt 
+
+# ARCHIVO GFP_A
+source="GFP_A" 
+grep "^ATOM" ${source}.pdb | awk '{print $4}' | sort | uniq > res1.txt
+echo "aas;GFP" > ${source}_aas.csv
+while read res; do
+	count=$(grep " $res " ${source}.pdb | grep "CA" | wc -l)
+	echo "$res;$count" >> ${source}_aas.csv
+done < res1.txt 
+# ARCHIVO 3
+source="ACE2_A"
+grep "^ATOM" ${source}.pdb | awk '{print $4}' | sort | uniq > res1.txt
+echo "aas;ACE2" > ${source}_aas.csv
+while read res; do
+	count=$(grep " $res " ${source}.pdb | grep "CA" | wc -l)
+	echo "$res;$count" >> ${source}_aas.csv
+done < res1.txt 
+
+
+  
+  
+ 
