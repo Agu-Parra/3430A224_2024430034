@@ -1,23 +1,25 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cstdlib> //para el system y atoi
+#include <cstdlib> //para Graphviz
 using namespace std;
 
+// Lista dinamica
 struct Nodo{
 
-    int score;
-    int direccion;
+    int score; // Puntaje
+    int direccion; // guardar la direccion
     Nodo* diagonal;
     Nodo* arriba;
     Nodo* izquierda;
 };
 
-Nodo **M; //prueba : matriz dinamica
+Nodo **M; //matriz dinamica = puntero a un puntero que apunta a una matriz dinamica 
 
 int gap; 
 int MatrizU[4][4]; //matriz de sustitucion
 
+//Obtiene el Maximo para ocuparlo en la funcion llenar matriz
 int obtenerMaximo(int a, int b, int c){ 
     int maximo = a;
     if(b > maximo){
@@ -29,6 +31,7 @@ int obtenerMaximo(int a, int b, int c){
     return maximo;
 }
 
+// Para leer la matriz U le asignamos un indice numerico a la base 
 int indiceBase(char base){
     if(base == 'A' || base == 'a') return 0;
     if(base == 'C' || base == 'c' ) return 1;
@@ -54,6 +57,7 @@ void eliminarMatriz(int u){
 }
 //==================LEER ARCHIVOS==================
 
+// Abre los archivos fasta ignorando la cabecera con el >  el getline detecta un \n en linea del archivo
 string leerSecuencia(string nombreArchivo){
     ifstream archivo(nombreArchivo);
     string linea, secuencia = "";
@@ -63,7 +67,7 @@ string leerSecuencia(string nombreArchivo){
         return "";  
     }
 
-    while(getline(archivo, linea)){
+    while(getline(archivo, linea)){ 
         if(saltarCabecera){
             if(linea.size() > 0 && linea[0] == '>'){
                 saltarCabecera = false;
@@ -76,6 +80,7 @@ string leerSecuencia(string nombreArchivo){
     return secuencia;
 }
 
+// Abre la matriz U ayudad de la funcion indeceBase 
 void leematrizU(string name){
     ifstream archi(name);
     if(!archi.is_open()){
@@ -84,7 +89,7 @@ void leematrizU(string name){
     }
 
     char fila;
-    int a1,b2,c3,d4;
+    int a1,b2,c3,d4; // Numeros de las filas 
     string linea;
     getline(archi,linea); //leer primera linea A,C,T,G
     for(int i=0; i<4;i++){
@@ -119,6 +124,8 @@ void mostrarMatrizU(){
 
 //==================INICIALIZAR=================================
 
+// Llena la matriz con el valor de penalizacion
+
 void inicializarMatriz(const string& N, const string& C){
     int u = N.size(); // LARGO DE LA PRIMERA SECUENCIA
     int v = C.size(); // LARGO DE LA SEGUNDA SECUENCIA
@@ -151,6 +158,7 @@ void inicializarMatriz(const string& N, const string& C){
 
 //===============================LLENAR====================================
 
+//Ayudado de IndiceBase y obtenerMaximo llena la matriz ayudado de la funcion y las direcciones 
 void llenarMatriz(const string& N, const string& C){
 
     int u = N.size();
@@ -192,43 +200,48 @@ void llenarMatriz(const string& N, const string& C){
 
 //=========================RECONSTRUCCION======================
 
+
+// Hace el backstraking desde la direccion abajo derecha guardando los scores maximos y reconstruyendo la secuencia final ademas de 
+// calcular el porcentaje de identidad, las seceuncias se guardan en secuencia 
 void Reconstruccion(const string& N, const string& C, string &secuencia, double &identidad_secu, string &secuenciaA, string &secuenciaB){
 
-    int u = N.size();
+    int u = N.size(); // Calcula el largo de la secuencia
     int v = C.size();
 
-    string A(u+v + 5, ' ');
-    string B(u+v + 5, ' ');
+    string A(u+v + 5, ' ');  //Crea donde se va a guardar al secuencia A + 5 por seguridad
+    string B(u+v + 5, ' '); //Crea donde se va a guardar al secuencia B + 5 por seguridad
 
+    //Inicializacion de la posicion e indices
     int posi = 0;
     int i = u;
     int j = v;
 
-    while(i>0 || j>0){
-        if(M[i][j].direccion == 1){
+    while(i>0 || j>0){  //Bucle para hacer la recosntruccion filas y columnas
+        if(M[i][j].direccion == 1){ //DIAGONAL
             A[posi] = N[i-1];
             B[posi] = C[j-1];
-            i--; j--;
+            i--; j--; // decrecion
         }
-        else if(M[i][j].direccion == 2){
+        else if(M[i][j].direccion == 2){ // arriba
             A[posi] = N[i-1];
             B[posi] = '-';
-            i--;
+            i--; //decrecion
         }
         else{
             A[posi] = '-';
-            B[posi] = C[j-1];
-            j--;
+            B[posi] = C[j-1]; // izquierda
+            j--; // decrecion
         }
-        posi++;
+        posi++; //proxima posicion
     }
-
+    // Limpirar las cadenas 
     secuenciaA.clear();
     secuenciaB.clear();
     secuencia.clear();
+
     string lineas;
 
-
+    //Reconstrucion con |= matches , . = mismatch y vacio = para gaps
     for(int k = posi-1; k >= 0; k--){
         secuenciaA += A[k];
         secuenciaB += B[k];
@@ -240,13 +253,14 @@ void Reconstruccion(const string& N, const string& C, string &secuencia, double 
  
     secuencia = "Alineacion\n";
 
+    // Calculo de matches
     int matches = 0;
     for(int k = 0; k < posi; k++){
         if(secuenciaA[k] == secuenciaB[k] && secuenciaA[k] != '-' && secuenciaB[k] != '-')
             matches++;
     }
 
-    int ancho = 80;
+    int ancho = 80; // Imprimir por 80 columnas de bases en el txt
     int largo = secuenciaA.size();
 
     for (int i = 0; i < largo; i += ancho) {
@@ -268,6 +282,7 @@ void Reconstruccion(const string& N, const string& C, string &secuencia, double 
         secuencia += "\n\n";
     }
 
+    //Calculo de identidad
     double identidad = 100.0 * matches / posi;
     identidad_secu = identidad;
     secuencia += "\nIdentidad: " + to_string(identidad) + "%\n";
@@ -281,6 +296,7 @@ void mostrarIdentidad(double identidad){
 
 void generarGraphviz(const string& A, const string& B, string filename){
 
+    // Creacion del dot
     ofstream dot(filename);
     if(!dot.is_open()){
         cout << "Error al crear archivo Graphviz." << endl;
@@ -292,12 +308,13 @@ void generarGraphviz(const string& A, const string& B, string filename){
     dot << "node [shape=box style=filled fontname=\"Courier\" fontsize=12 width=0.4 height=0.4];\n\n";
 
     int N = A.size();
-    if(N > 100) N = 100;
+    if(N > 100) N = 100;  // Hasta 100 bases 
 
     for(int i = 0; i < N; i++){
         char a = A[i];
         char b = B[i];
 
+        // Obtiene los scores de la matriz 
         int ia = indiceBase(a);
         int ib = indiceBase(b);
 
@@ -308,10 +325,11 @@ void generarGraphviz(const string& A, const string& B, string filename){
             score = gap;
 
         string color;
-        if(score > 0)      color = "green";
-        else if(score == 0) color = "yellow";
-        else               color = "red";
+        if(score > 0)      color = "green"; // match
+        else if(score == 0) color = "yellow"; // score 0
+        else               color = "red"; // mismatch
 
+        //Creacion de la caja 
         string label = "";
         label += a;
         label += "|";
